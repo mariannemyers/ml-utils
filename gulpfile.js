@@ -15,8 +15,8 @@ gulp.task('browserify', function() {
         .pipe(gulp.dest('./'))
 });
 
-gulp.task('min', function() {
-  gulp.src('./ml-utils.js')
+gulp.task('min', ['browserify'], function() {
+  return gulp.src('./ml-utils.js')
     .pipe(jsmin())
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('./'));
@@ -29,4 +29,4 @@ gulp.task('lint', function() {
 });
 
 
-gulp.task('build',['browserify','min']);
+gulp.task('build',['min']); // TODO update the version

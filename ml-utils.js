@@ -13,7 +13,7 @@ module.exports = function(app) {
 
 }
 },{}],2:[function(require,module,exports){
-var app = angular.module('obp-services',[]);
+var app = angular.module('ml-utils',[]);
 
 require('./maps.js')(app);
 require('./loader.js')(app);
@@ -81,9 +81,9 @@ module.exports = function(app) {
 module.exports = function(app) {
 
   app
-    .provider('obpMapService', function() {
+    .provider('mlMapService', function() {
       // configurable options
-      var apiKey, clientId, v, sensor, cb = 'obpMapsLoaded', libraries = [], scriptUrl = 'https://maps.googleapis.com/maps/api/js';
+      var apiKey, clientId, v, sensor, cb = 'mlMapsLoaded', libraries = [], scriptUrl = 'https://maps.googleapis.com/maps/api/js';
       var defaultOptions = { 
         center: [37.774546, -122.433523], 
         zoom: 8,
@@ -127,7 +127,7 @@ module.exports = function(app) {
       };
 
       var createScriptUrl = function() {
-        var url = scriptUrl + '?callback=obpMapsLoaded';
+        var url = scriptUrl + '?callback=mlMapsLoaded';
         if (apiKey) {
           url += '&key=' + apiKey;
         }
@@ -147,7 +147,7 @@ module.exports = function(app) {
       this.$get = ['scriptLoader', '$q', function(scriptLoader,$q) {
         var loader = $q.defer(), load = function() { return loader.promise; }, maps = {}, service = {};
         // google maps does its own magic, so we need to listen for their callback not just wait for the script to be loaded
-        window.obpMapsLoaded = function() {
+        window.mlMapsLoaded = function() {
           service.loaded = true;
           loader.resolve();
         }
@@ -315,12 +315,12 @@ module.exports = function(app) {
       }];
 
     })
-    // insert a map into any DOM element <div obp-map="mapName"></div>
-    .directive('obpMap', ['obpMapService', function(obpMapService) {
+    // insert a map into any DOM element <div ml-map="mapName"></div>
+    .directive('mlMap', ['mlMapService', function(mlMapService) {
       return {
         restrict: 'A',
         scope: {
-          obpMap: '@', // directive also contains the map name
+          mlMap: '@', // directive also contains the map name
           controls: '@', // [optional] valid: 'off', 'false', 'default', any other values equate to true
           center: '=',  // [optional] the lat,lng value center of the map, expected: an array
           markerAt: '=' // [optional] the lat,lng coords of a default marker to add, expected: an array
@@ -339,13 +339,13 @@ module.exports = function(app) {
           } else if (scope.controls === 'default') {
             opts.controlType =false;
           }
-          var mapName = scope.obpMap || 'default'
+          var mapName = scope.mlMap || 'default'
           // use the name or default if empty attribute
-          var map = obpMapService.createMap(mapName,element[0], opts);
+          var map = mlMapService.createMap(mapName,element[0], opts);
           if (scope.markerAt && scope.markerAt.length === 2) {
             // add marker after the google script has loaded
             map.then(function(map) { 
-              obpMapService.addMarker(scope.markerAt,map.map);
+              mlMapService.addMarker(scope.markerAt,map.map);
             });
           }
         }
