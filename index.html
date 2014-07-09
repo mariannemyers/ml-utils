@@ -11,7 +11,11 @@
 <body>
   <div id="largeMap" ml-map="main"></div>
 
-  <script src="https://raw.githubusercontent.com/withjam/ml-utils/master/ml-utils.js"></script>
+  <script src="ml-utils.js"></script>
+  <script>
+    var demoApp = angular.module('demoApp',['ml-utils']);
+    angular.bootstrap(document,['demoApp']);
+  </script>
 
 </body>
 </html>
