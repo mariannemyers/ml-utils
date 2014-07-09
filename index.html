@@ -2,8 +2,16 @@
 <html>
 <head>
   <title>ml-utils demo</title>
+  <script src="https://code.angularjs.org/snapshot/angular.min.js"></script>
+  <style>
+    html,body { margin: 0; padding: 0; height: 100%; font: 14px Arial; }
+    #largeMap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 11; }
+  </style>
 </head>
 <body>
-<h1>ML Utils Demo Page</h1>
+  <div id="largeMap" ml-map="main"></div>
+
+  <script src="https://raw.githubusercontent.com/withjam/ml-utils/master/ml-utils.js"></script>
+
 </body>
 </html>
