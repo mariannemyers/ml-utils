@@ -2,9 +2,8 @@
 <html>
 <head>
   <title>ml-utils demo</title>
-  <link rel="stylesheet" href="demo/prism.css">
+  <link rel="stylesheet" href="demo/bower_components/highlightjs/styles/github.css">
   <link rel="stylesheet" href="demo/demo.css">
-  <script src="https://code.angularjs.org/snapshot/angular.min.js"></script>
 </head>
 <body>
   <div id="largeMap" ml-map="main"></div>
@@ -13,12 +12,14 @@
     <section>
     <p>The large map area has been created using the mlMap directive and has been given the name "main".  Other elements can manipulate this map by it's name.  The div itself is styled by CSS before the map is loaded:
 
-    <pre><code class="language-html"><div id="largeMap" ml-map="main"></div></code></pre>
+    <hljs><div id="largeMap" ml-map="main"></div></hljs>
     </section>
   </div>
 
+  <script src="demo/bower_components/highlightjs/highlight.pack.js"></script>
+  <script src="https://code.angularjs.org/snapshot/angular.min.js"></script>
+  <script src="demo/bower_components/angular-highlightjs/angular-highlightjs.min.js"></script>
   <script src="ml-utils.js"></script>
-  <script src="demo/prism.min.js"></script>
   <script src="demo/demo.js"></script>
 
 </body>
