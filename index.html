@@ -2,20 +2,24 @@
 <html>
 <head>
   <title>ml-utils demo</title>
+  <link rel="demo/prism.css">
+  <link rel="demo/demo.css">
   <script src="https://code.angularjs.org/snapshot/angular.min.js"></script>
-  <style>
-    html,body { margin: 0; padding: 0; height: 100%; font: 14px Arial; }
-    #largeMap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 11; }
-  </style>
 </head>
 <body>
   <div id="largeMap" ml-map="main"></div>
 
+  <div id="content">
+    <section>
+    <p>The large map area has been created using the mlMap directive and has been given the name "main".  Other elements can manipulate this map by it's name.  The div itself is styled by CSS before the map is loaded:
+
+    <pre><code class="language-html"><div id="largeMap" ml-map="main"></div></code></pre>
+    </section>
+  </div>
+
   <script src="ml-utils.js"></script>
-  <script>
-    var demoApp = angular.module('demoApp',['ml-utils']);
-    angular.bootstrap(document,['demoApp']);
-  </script>
+  <script src="demo/prism.js"></script>
+  <script src="demo/demo.js"></script>
 
 </body>
 </html>
