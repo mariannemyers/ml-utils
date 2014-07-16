@@ -323,6 +323,7 @@ module.exports = function(app) {
         scope: {
           mlMap: '@', // directive also contains the map name
           controls: '@', // [optional] valid: 'off', 'false', 'default', any other values equate to true
+          zoom: '@', // [optional] set a numeric zoom level
           center: '=',  // [optional] the lat,lng value center of the map, expected: an array
           markerAt: '=' // [optional] the lat,lng coords of a default marker to add, expected: an array
         },
@@ -330,6 +331,9 @@ module.exports = function(app) {
           var opts = { };
           if (scope.center || scope.markerAt) {
             opts.center = scope.center || scope.markerAt;
+          }
+          if (scope.zoom && !isNaN(scope.zoom)) {
+            opts.zoom = parseInt(scope.zoom);
           }
           // construct the options object
           if (scope.controls === 'false' || scope.controls === 'off') {
@@ -340,6 +344,7 @@ module.exports = function(app) {
           } else if (scope.controls === 'default') {
             opts.controlType =false;
           }
+          console.log('opts',opts);
           var mapName = scope.mlMap || 'default'
           // use the name or default if empty attribute
           var map = mlMapService.createMap(mapName,element[0], opts);

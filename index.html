@@ -22,13 +22,23 @@
     <h4>Add KML</h4>
     <p>You can add KML data via a public URL to any existing map by name</p>
     <form name="kmlDataForm" ng-submit="demoControl.addKml()"><strong>KML URL:</strong> <input ng-model="demoControl.kml.url" placeholder="url"> <select ng-model="demoControl.kml.mapname" ng-options="name as name for (name,opts) in demoControl.maps"><option value="">Main</option></select> <button submit="true" ng-click="demoControl.addKml()">Load KML</button></form>
+
+    <h4>Layers</h4>
+    <p>Google offers a few default layers that are included in the mlMapService.  By abstracting this functionality out it should be possible to implement the same behavior even with different map providers in the future.</p>
+    <div class="inline-selection"><input type="checkbox" ng-model="demoControl.layers.transit"> Transit</div>
+    <div class="inline-selection"><input type="checkbox" ng-model="demoControl.layers.traffic"> Traffic</div>
+
     </section>
   </div>
 
   <div id="othermaps" ng-hide="demoControl.hideMaps">
-    <div class="mapPanel" ng-repeat="(name,opts) in demoControl.maps">
+    <div class="mapPanel" ng-repeat="(name,opts) in demoControl.maps" ng-init="flags = { transit: false, traffice: false }">
+      <div class="flags">
+        <div class="inline-selection"><input type="checkbox" ng-change="demoControl.toggleTraffic(name,flags.traffic)" ng-model="flags.traffic"> Traffic</div>
+        <div class="inline-selection"><input type="checkbox" ng-change="demoControl.toggleTransit(name,flags.transit)" ng-model="flags.transit"> Transit</div>
+      </div>
       <h3>{{ name }} <span> controls: {{ opts.controls }}</h3>
-      <div class="small-map" ml-map="{{name}}" controls="{{ opts.controls }}"></div>
+      <div class="small-map" ml-map="{{name}}" controls="{{ opts.controls }}" zoom="11"></div>
     </div>
   </div>
 

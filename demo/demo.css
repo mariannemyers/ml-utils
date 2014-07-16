@@ -6,12 +6,15 @@ h4 { border-top: dashed 1px #AAA; padding-top: 1em }
 
 #largeMap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 11; }
 
-#content { position: absolute; top: 0; left: 0; width: 50%; min-width: 355px; z-index: 21; }
+#content { position: absolute; top: 0; left: 0; width: 50%; min-width: 355px; z-index: 21; max-height: 98%; overflow-y: scroll }
 
 #content section { background-color: #FFF; padding: 0.75em; margin: 0.75em; box-shadow:  3px 4px 10px 0px rgba(50, 50, 50, 0.75); }
 
 #othermaps { position: absolute; top: 0px; right: 0px; min-width: 355px; width: 40%; z-index: 21; max-height: 100%; overflow-y: scroll; padding: 0 14px 15px;}
 
 #othermaps .mapPanel { margin-top: 10px; padding: 1px; background-color: #FFF; border-radius: 0px; border-radius: 4px 4px 0 0; box-shadow:  3px 4px 10px 0px rgba(50, 50, 50, 0.75); }
-.mapPanel h3 { margin: 0; padding: 12px; color: #454545; }
-.mapPanel .small-map { width: 100%; height: 200px; }
+.mapPanel h3 { margin: 0; padding: 12px; color: #454545; float: left;}
+.mapPanel .small-map { width: 100%; height: 300px; }
+.mapPanel .flags { float: right; padding: 1em; }
+
+.inline-selection { display: inline-block; vertical-align: middle; margin: 0 1em }
