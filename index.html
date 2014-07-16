@@ -15,16 +15,16 @@
 
     <div class="code" hljs><div id="largeMap" ml-map="main"></div></div>
 
-    <h4>Add Maps <span ng-show="demoControl.mapNames.length">(<input type="checkbox" ng-model="demoControl.hideMaps"> hide other maps)</span></h4>
+    <h4>Add Maps <span ng-show="demoControl.hasOtherMaps"><input type="checkbox" ng-model="demoControl.hideMaps"> hide other maps</span></h4>
     <p>You can add maps using the <span class="code">ml-utils</span> directive anywhere on the site</p>
-    <form name="nextMapForm" ng-submit="demoControl.addMap()"><strong>New Map:</strong> <input ng-model="demoControl.nextMap.name" placeholder="Map name"> <input type="checkbox" ng-model="demoControl.nextMap.hideCtrl"> <em>hide controls</em> <button submit="true">Add Map</button></form>
+    <form name="nextMapForm" ng-submit="demoControl.addMap()"><strong>New Map:</strong> <input ng-model="demoControl.nextMap.name" placeholder="Map name"> <input type="checkbox" ng-model="demoControl.nextMap.hideCtrl"> <em>hide map controls</em> <button submit="true">Add Map</button></form>
     </section>
   </div>
 
   <div id="othermaps" ng-hide="demoControl.hideMaps">
-    <div class="mapPanel" ng-repeat="name in demoControl.mapNames">
-      <h3>{{ name }}</h3>
-      <div class="small-map" ml-map="{{name}}"></div>
+    <div class="mapPanel" ng-repeat="(name,opts) in demoControl.maps">
+      <h3>{{ name }} <span> controls: {{ opts.controls }}</h3>
+      <div class="small-map" ml-map="{{name}}" controls="{{ opts.controls }}"></div>
     </div>
   </div>
 
