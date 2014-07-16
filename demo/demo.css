@@ -2,6 +2,8 @@ html,body { margin: 0; padding: 0; height: 100%; font: 14px Arial; overflow: hid
 
 h2 span, h3 span, h4 span { font-weight: 300; font-size: 0.875em; display: inline-block; background-color: #EEE; padding: 0.25em 1em }
 
+h4 { border-top: dashed 1px #AAA; padding-top: 1em }
+
 #largeMap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 11; }
 
 #content { position: absolute; top: 0; left: 0; width: 50%; min-width: 355px; z-index: 21; }

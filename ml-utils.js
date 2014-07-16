@@ -297,6 +297,7 @@ module.exports = function(app) {
             if (!mapObj.kmlayers) {
               mapObj.kmlayers = [];
             }
+            console.log('adding kml to '+mapName+': '+url);
             var kmlayer = new google.maps.KmlLayer({url: url});
             kmlayer.setMap(mapObj.map);
             mapObj.kmlayers.push(kmlayer);

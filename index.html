@@ -17,7 +17,11 @@
 
     <h4>Add Maps <span ng-show="demoControl.hasOtherMaps"><input type="checkbox" ng-model="demoControl.hideMaps"> hide other maps</span></h4>
     <p>You can add maps using the <span class="code">ml-utils</span> directive anywhere on the site</p>
-    <form name="nextMapForm" ng-submit="demoControl.addMap()"><strong>New Map:</strong> <input ng-model="demoControl.nextMap.name" placeholder="Map name"> <input type="checkbox" ng-model="demoControl.nextMap.hideCtrl"> <em>hide map controls</em> <button submit="true">Add Map</button></form>
+    <form name="nextMapForm" ng-submit="demoControl.addMap()"><strong>New Map:</strong> <input ng-model="demoControl.nextMap.name" placeholder="Map name"> <input type="checkbox" ng-model="demoControl.nextMap.inclCtrl"> <em>include map controls</em> <button submit="true">Add Map</button></form>
+
+    <h4>Add KML</h4>
+    <p>You can add KML data via a public URL to any existing map by name</p>
+    <form name="kmlDataForm" ng-submit="demoControl.addKml()"><strong>KML URL:</strong> <input ng-model="demoControl.kml.url" placeholder="url"> <select ng-model="demoControl.kml.mapname" ng-options="name as name for (name,opts) in demoControl.maps"><option value="">Main</option></select> <button submit="true" ng-click="demoControl.addKml()">Load KML</button></form>
     </section>
   </div>
 
