@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="demo/bower_components/highlightjs/styles/github.css">
   <link rel="stylesheet" href="demo/demo.css">
 </head>
-<body>
+<body ng-controller="DemoCtrl as demoControl">
   <div id="largeMap" ml-map="main"></div>
 
   <div id="content">
@@ -14,7 +14,18 @@
     <p>The large map area has been created using the mlMap directive and has been given the name "main".  Other elements can manipulate this map by it's name.  The div itself is styled by CSS before the map is loaded:
 
     <div class="code" hljs><div id="largeMap" ml-map="main"></div></div>
+
+    <h4>Add Maps <span ng-show="demoControl.mapNames.length">(<input type="checkbox" ng-model="demoControl.hideMaps"> hide other maps)</span></h4>
+    <p>You can add maps using the <span class="code">ml-utils</span> directive anywhere on the site</p>
+    <form name="nextMapForm" ng-submit="demoControl.addMap()"><strong>New Map:</strong> <input ng-model="demoControl.nextMap.name" placeholder="Map name"> <input type="checkbox" ng-model="demoControl.nextMap.hideCtrl"> <em>hide controls</em> <button submit="true">Add Map</button></form>
     </section>
+  </div>
+
+  <div id="othermaps" ng-hide="demoControl.hideMaps">
+    <div class="mapPanel" ng-repeat="name in demoControl.mapNames">
+      <h3>{{ name }}</h3>
+      <div class="small-map" ml-map="{{name}}"></div>
+    </div>
   </div>
 
   <script src="demo/bower_components/highlightjs/highlight.pack.js"></script>

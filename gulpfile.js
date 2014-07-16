@@ -28,5 +28,13 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter(stylish));
 });
 
+gulp.task('dev', function() {
+  console.log('Watching js files for changes');
+  var watcher = gulp.watch('src/*.js', ['build']);
+  watcher.on('change', function(event) {
+    console.log('File '+event.path+' was '+event.type);
+  });
+});
+
 
 gulp.task('build',['min']); // TODO update the version
