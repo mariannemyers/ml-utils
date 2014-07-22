@@ -83,7 +83,7 @@ module.exports = function(app) {
         // primarily used internally but exposed just in case someone wants to use it
         service.resolveMapOrMapName = function(mapOrMapName) {
           if (typeof mapOrMapName === 'string') {
-            mapObj = maps[mapOrMapName];
+            var mapObj = maps[mapOrMapName];
             if (mapObj) {
               return mapObj.map;
             }

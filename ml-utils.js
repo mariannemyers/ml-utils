@@ -162,7 +162,7 @@ module.exports = function(app) {
         // primarily used internally but exposed just in case someone wants to use it
         service.resolveMapOrMapName = function(mapOrMapName) {
           if (typeof mapOrMapName === 'string') {
-            mapObj = maps[mapOrMapName];
+            var mapObj = maps[mapOrMapName];
             if (mapObj) {
               return mapObj.map;
             }
@@ -344,7 +344,6 @@ module.exports = function(app) {
           } else if (scope.controls === 'default') {
             opts.controlType =false;
           }
-          console.log('opts',opts);
           var mapName = scope.mlMap || 'default'
           // use the name or default if empty attribute
           var map = mlMapService.createMap(mapName,element[0], opts);
