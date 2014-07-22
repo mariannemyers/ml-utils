@@ -48,6 +48,18 @@ demoApp.controller('DemoCtrl', [ 'mlMapService', '$scope', function(mlMapService
     }
   }
 
+  this.addMarker = function() {
+    if (!demoControl.marker.coords) {
+      alert("Please enter coordinates");
+    }
+    var coords = demoControl.marker.coords.split(',');
+    coords[0] = parseFloat(coords[0]);
+    coords[1] = parseFloat(coords[1]);
+    console.log('coords',coords);
+    console.log('adding marker to',demoControl.marker.mapname,'at',coords);
+    mlMapService.addMarker(coords,demoControl.marker.mapname||"main");
+  }
+
 
   this.addMap = function() {
     if (!demoControl.nextMap.name) {
