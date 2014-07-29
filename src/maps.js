@@ -2,7 +2,7 @@
 module.exports = function(app) {
 
   app
-    .provider('mlMapService', function() {
+    .provider('mlMaps', function() {
       // configurable options
       var apiKey, clientId, v, sensor, cb = 'mlMapsLoaded', libraries = [], scriptUrl = 'https://maps.googleapis.com/maps/api/js';
       var defaultOptions = { 
@@ -238,7 +238,7 @@ module.exports = function(app) {
 
     })
     // insert a map into any DOM element <div ml-map="mapName"></div>
-    .directive('mlMap', ['mlMapService', function(mlMapService) {
+    .directive('mlMap', ['mlMaps', function(mlMaps) {
       return {
         restrict: 'A',
         scope: {
@@ -267,11 +267,11 @@ module.exports = function(app) {
           }
           var mapName = scope.mlMap || 'default'
           // use the name or default if empty attribute
-          var map = mlMapService.createMap(mapName,element[0], opts);
+          var map = mlMaps.createMap(mapName,element[0], opts);
           if (scope.markerAt && scope.markerAt.length === 2) {
             // add marker after the google script has loaded
             map.then(function(map) { 
-              mlMapService.addMarker(scope.markerAt,map.map);
+              mlMaps.addMarker(scope.markerAt,map.map);
             });
           }
         }

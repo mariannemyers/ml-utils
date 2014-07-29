@@ -1,6 +1,6 @@
 var demoApp = angular.module('demoApp',['ml.utils','hljs']);
 
-demoApp.controller('DemoCtrl', [ 'mlMapService', '$scope', function(mlMapService,$scope) {
+demoApp.controller('DemoCtrl', [ 'mlMaps', '$scope', function(mlMaps,$scope) {
   var demoControl = this;
   demoControl.maps = {}; // store map names that we know
   demoControl.nextMap = { inclCtrl: true };
@@ -18,14 +18,14 @@ demoApp.controller('DemoCtrl', [ 'mlMapService', '$scope', function(mlMapService
     var map = newVal.map || 'main';
     if (newVal) {
       if (demoControl.layers.traffic) {
-        mlMapService.showTraffic(map);
+        mlMaps.showTraffic(map);
       } else {
-        mlMapService.hideTraffic(map);
+        mlMaps.hideTraffic(map);
       }
       if (demoControl.layers.transit) {
-        mlMapService.showTransit(map);
+        mlMaps.showTransit(map);
       } else {
-        mlMapService.hideTransit(map);
+        mlMaps.hideTransit(map);
       }
     }
   });
@@ -33,18 +33,18 @@ demoApp.controller('DemoCtrl', [ 'mlMapService', '$scope', function(mlMapService
   this.toggleTransit = function(mapName,flag) {
     console.log('toggleTransit',mapName,flag);
     if (flag) {
-      mlMapService.showTransit(mapName);
+      mlMaps.showTransit(mapName);
     } else {
-      mlMapService.hideTransit(mapName);
+      mlMaps.hideTransit(mapName);
     }
   }
 
   this.toggleTraffic = function(mapName,flag) {
     console.log('toggleTraffi',mapName,flag);
     if (flag) {
-      mlMapService.showTraffic(mapName);
+      mlMaps.showTraffic(mapName);
     } else {
-      mlMapService.hideTraffic(mapName);
+      mlMaps.hideTraffic(mapName);
     }
   }
 
@@ -57,7 +57,7 @@ demoApp.controller('DemoCtrl', [ 'mlMapService', '$scope', function(mlMapService
     coords[1] = parseFloat(coords[1]);
     console.log('coords',coords);
     console.log('adding marker to',demoControl.marker.mapname,'at',coords);
-    mlMapService.addMarker(coords,demoControl.marker.mapname||"main");
+    mlMaps.addMarker(coords,demoControl.marker.mapname||"main");
   }
 
 
@@ -84,7 +84,7 @@ demoApp.controller('DemoCtrl', [ 'mlMapService', '$scope', function(mlMapService
       return;
     }
     console.log('calling loadKML', demoControl.kml.mapname, demoControl.kml.url);
-    mlMapService.loadKML(demoControl.kml.mapname || 'main',demoControl.kml.url);
+    mlMaps.loadKML(demoControl.kml.mapname || 'main',demoControl.kml.url);
   }
 }]);
 
