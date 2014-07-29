@@ -13,7 +13,7 @@ module.exports = function(app) {
 
 }
 },{}],2:[function(require,module,exports){
-var app = angular.module('ml-utils',[]);
+var app = angular.module('ml.utils',[]);
 
 require('./maps.js')(app);
 require('./loader.js')(app);

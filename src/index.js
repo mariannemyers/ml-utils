@@ -1,4 +1,4 @@
-var app = angular.module('ml-utils',[]);
+var app = angular.module('ml.utils',[]);
 
 require('./maps.js')(app);
 require('./loader.js')(app);

@@ -1,4 +1,4 @@
-var demoApp = angular.module('demoApp',['ml-utils','hljs']);
+var demoApp = angular.module('demoApp',['ml.utils','hljs']);
 
 demoApp.controller('DemoCtrl', [ 'mlMapService', '$scope', function(mlMapService,$scope) {
   var demoControl = this;
